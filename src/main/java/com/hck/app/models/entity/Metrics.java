@@ -9,7 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+//import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -29,9 +29,9 @@ public class Metrics implements Serializable {
 	private Date createAt;
 	
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name= "users_id")
-	private Users users;
+	//@ManyToOne(fetch = FetchType.LAZY)
+	//@JoinColumn(name= "users_id")
+	//private Users users;
 	
 	public Long getId() {
 		return id;
@@ -51,11 +51,12 @@ public class Metrics implements Serializable {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-	public Users getUsers() {
+	
+	/*public Users getUsers() {
 		return users;
 	}
 	public void setUsers(Users users) {
 		this.users = users;
-	}
+	}*/
 	
 }

@@ -22,4 +22,25 @@ public class UServiceImpl implements UsersService  {
 		return (List<Users>) usersDao.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly = true )
+	public Users findById(Long id) {
+		// TODO Auto-generated method stub
+		return usersDao.findById(id)
+				.orElse(null);
+	}
+
+	@Override
+	@Transactional
+	public Users save(Users users) {
+		// TODO Auto-generated method stub
+		return usersDao.save(users);
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		usersDao.deleteById(id);
+	}
+
 }

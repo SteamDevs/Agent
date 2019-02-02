@@ -32,13 +32,6 @@ public class Users implements Serializable  {
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
-	/*@OneToMany(mappedBy = "users"  ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Metrics> metrics;
-	
-	public Users() {
-		metrics = new ArrayList<Metrics>();
-	}*/
-	
 	public Long getId() {
 		return id;
 	}
@@ -64,16 +57,5 @@ public class Users implements Serializable  {
 		this.createAt = createAt;
 	}
 	
-	/*public List<Metrics> getMetrics() {
-		return metrics;
-	}
-	
-	public void setMetrics(List<Metrics> metrics) {
-		this.metrics = metrics;
-	}
-	
-	/*public void addMetric(Metrics metrics) {
-		((List<Metrics>) metrics).add(metrics);
-	}*/
 	
 }

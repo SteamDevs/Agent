@@ -20,4 +20,24 @@ public class MServiceImpl implements MetricsService {
 		return (List<Metrics>) metricsDao.findAll();
 	}
 
+	@Override
+	public Metrics findByIdMetrics(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Metrics saveMetrics(Metrics metrics) {
+		// TODO Auto-generated method stub
+		return metricsDao.save(metrics);
+	}
+
+	@Override
+	public void deleteMetric(Long id) {
+		// TODO Auto-generated method stub
+		metricsDao.deleteById(id);
+	}
+	
+	
+
 }

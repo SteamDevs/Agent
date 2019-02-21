@@ -23,7 +23,8 @@ public class MServiceImpl implements MetricsService {
 	@Override
 	public Metrics findByIdMetrics(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return metricsDao.
+				findById(id).orElse(null);
 	}
 
 	@Override

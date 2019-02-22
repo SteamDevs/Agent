@@ -28,7 +28,6 @@ public class MetricsController {
 		return metricsService.findAll();
 	}
 	
-	
 	//Saving metrics
 	@PostMapping("/metrics")
 	@ResponseStatus(HttpStatus.CREATED)

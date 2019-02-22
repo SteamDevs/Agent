@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 //import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +30,10 @@ public class Metrics implements Serializable {
 	@Column(name="create_at")
 	private Date createAt;
 	
+	@PrePersist
+	public void prePersist() {
+		createAt = new Date();
+	}
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "users_id")

@@ -7,10 +7,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -38,8 +40,19 @@ public class Users implements Serializable  {
 		createAt = new Date();
 	}
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name= "rol_id")
+	private Rol rol;
+	
+	
 	public Long getId() {
 		return id;
+	}
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	public void setId(Long id) {
 		this.id = id;

@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="users")
 public class Users implements Serializable  {
@@ -42,18 +44,14 @@ public class Users implements Serializable  {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name= "rol_id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Rol rol;
 	
 	
 	public Long getId() {
 		return id;
 	}
-	public Rol getRol() {
-		return rol;
-	}
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
@@ -74,6 +72,13 @@ public class Users implements Serializable  {
 	}
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
+	}
+	
+	public Rol getRol() {
+		return rol;
+	}
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
 	
 	

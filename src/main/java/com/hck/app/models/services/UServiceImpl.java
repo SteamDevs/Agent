@@ -42,5 +42,12 @@ public class UServiceImpl implements UsersService  {
 		// TODO Auto-generated method stub
 		usersDao.deleteById(id);
 	}
+	
+	//Login Method verify
+	@Override
+	public Users verifyLogin(Users user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

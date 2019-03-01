@@ -66,5 +66,17 @@ public class UsersController {
 	public void deleteUser(@PathVariable Long id ) {
 		userService.delete(id);
 	}
+	
+	//Login Method
+	@PostMapping("/users/login")
+	@ResponseStatus(HttpStatus.CONTINUE)
+	public  Users loginUser(@RequestBody Users users ) {
+		
+		//in process
+		System.out.println(users);
+		
+		return null;
+	}
+	
 		
 }

@@ -14,4 +14,5 @@ public interface UsersService {
 	
 	public void delete(Long id );
 	
+	public Users verifyLogin(Users user );
 }

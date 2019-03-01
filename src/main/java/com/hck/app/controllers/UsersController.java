@@ -70,12 +70,9 @@ public class UsersController {
 	//Login Method
 	@PostMapping("/users/login")
 	@ResponseStatus(HttpStatus.CONTINUE)
-	public  Users loginUser(@RequestBody Users users ) {
+	public Users loginUser(@RequestBody Users users ) {
 		
-		//in process
-		System.out.println(users);
-		
-		return null;
+		return userService.verifyLogin(users);
 	}
 	
 		

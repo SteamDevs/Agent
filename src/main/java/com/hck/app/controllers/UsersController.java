@@ -30,7 +30,7 @@ public class UsersController {
 	@Autowired
 	private UServiceImpl userService;
 	
-	@GetMapping("/users")
+	/*@GetMapping("/users")
 	public List<Users> index(){
 		return userService.findAll();
 	}
@@ -74,6 +74,6 @@ public class UsersController {
 		
 		return userService.verifyLogin(users);
 	}
-	
+	*/
 		
 }

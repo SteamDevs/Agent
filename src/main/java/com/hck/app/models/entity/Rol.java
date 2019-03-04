@@ -1,27 +1,25 @@
 package com.hck.app.models.entity;
 
+
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
+@Entity
+@Table(name="roles")
+public class Rol implements Serializable{
 
-@Entity 
-@Table(name="rol")
-public class Rol implements Serializable {
- 
-	static final long serialVersionUID = 1L;
-	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private String rol_name;
-	
+	@Column(unique=true, length=20)
+	private String nombre;
 	
 	public Long getId() {
 		return id;
@@ -31,16 +29,16 @@ public class Rol implements Serializable {
 		this.id = id;
 	}
 
-	public String getRol_name() {
-		return rol_name;
+	public String getNombre() {
+		return nombre;
 	}
 
-	public void setRol_name(String rol_name) {
-		this.rol_name = rol_name;
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 
-	
-	
-	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }

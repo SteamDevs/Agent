@@ -8,6 +8,6 @@ import com.hck.app.models.entity.Users;
 public interface UsersRepository extends CrudRepository<Users, Long> {
 	
 	//Using JPQL
-	@Query("SELECT users FROM Users u WHERE u.nick=?1")
-	public Users findByNick(String nick ); 
+	@Query("select u from Users u where u.username=?1")
+	public Users findByUsername(String username);
 }

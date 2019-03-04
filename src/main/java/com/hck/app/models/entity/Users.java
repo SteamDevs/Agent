@@ -1,7 +1,7 @@
 package com.hck.app.models.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,24 +11,63 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="users")
-public class Users implements Serializable  {
-	
-	private static final long serialVersionUID = 1L;
-	
+@Table(name = "usuarios")
+public class Users implements Serializable {
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(unique = true, length = 20)
+	private String username;
+
+	@Column(length = 60)
+	private String password;
+
+	private Boolean enabled;
 	
+	private String nombre;
+	private String apellido;
+	
+	@Column(unique = true)
+	private String email;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
+	inverseJoinColumns=@JoinColumn(name="role_id"),
+	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
+	private List<Rol> roles;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public Boolean getEnabled() {
 		return enabled;
 	}
@@ -37,61 +76,40 @@ public class Users implements Serializable  {
 		this.enabled = enabled;
 	}
 
-	@Column(unique = true, length = 20)
-	private String nick;
-	
-	@Column(length = 20)
-	private String Pass;
-	
-	private Boolean enabled;
-	
-	@Column(name="create_at")
-	@Temporal(TemporalType.DATE)
-	private Date createAt;
-	
-	@PrePersist
-	public void prePersit() {
-		createAt = new Date();
+	public List<Rol> getRoles() {
+		return roles;
 	}
-	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name= "rol_id")
-	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-	private Rol rol;
-	
-	
-	public Long getId() {
-		return id;
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
-	
-	public void setId(Long id) {
-		this.id = id;
+
+	public String getNombre() {
+		return nombre;
 	}
-	public String getNick() {
-		return nick;
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
-	public void setNick(String nick) {
-		this.nick = nick;
+
+	public String getApellido() {
+		return apellido;
 	}
-	public String getPass() {
-		return Pass;
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
-	public void setPass(String pass) {
-		Pass = pass;
+
+	public String getEmail() {
+		return email;
 	}
-	public Date getCreateAt() {
-		return createAt;
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
-	}
-	
-	public Rol getRol() {
-		return rol;
-	}
-	public void setRol(Rol rol) {
-		this.rol = rol;
-	}
-	
-	
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 }

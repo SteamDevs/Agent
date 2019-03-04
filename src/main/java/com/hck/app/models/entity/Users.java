@@ -30,8 +30,21 @@ public class Users implements Serializable  {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long id;
 	
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	@Column(unique = true, length = 20)
 	private String nick;
+	
+	@Column(length = 20)
 	private String Pass;
+	
+	private Boolean enabled;
 	
 	@Column(name="create_at")
 	@Temporal(TemporalType.DATE)

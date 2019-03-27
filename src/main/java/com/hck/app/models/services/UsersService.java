@@ -14,9 +14,12 @@ public interface UsersService {
 	
 	public void delete(Long id );
 	
+	//Get Data Users For Token
+	public Users findByUsername(String username );
+	
 	//Deprecated
 	//public Users verifyLogin(Users user );
 	
-	//Get Data Users For Token
+	
 	
 }

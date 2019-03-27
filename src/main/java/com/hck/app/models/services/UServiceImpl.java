@@ -17,7 +17,7 @@ import com.hck.app.models.dao.UsersRepository;
 import com.hck.app.models.entity.Users;
 
 @Service
-public class UServiceImpl implements  UserDetailsService  {
+public class UServiceImpl implements  UserDetailsService, UsersService  {
 		
 	@Autowired
 	private UsersRepository usersDao;
@@ -39,6 +39,38 @@ public class UServiceImpl implements  UserDetailsService  {
 				.collect(Collectors.toList());  //Convert Stream to List user.rol
 		
 		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true, authorities);
+	}
+
+	@Override
+	public List<Users> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Users findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Users save(Users users) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Long id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	//Token Enhancer Info
+	@Override
+	public Users findByUsername(String username) {
+		// TODO Auto-generated method stub
+		return usersDao.findByUsername(username);
 	}
 	
 }

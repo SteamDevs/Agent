@@ -38,12 +38,12 @@ public class AuthorizationServerConfig extends  AuthorizationServerConfigurerAda
 		tokenChain.setTokenEnhancers(Arrays.asList(enhancerInfo, accessTokenConverter()));
 		
 		endpoints.authenticationManager(authenticationManager)
-		.tokenStore(tokenStore())
+		//.tokenStore(tokenStore())
 		.accessTokenConverter(accessTokenConverter())
 		.tokenEnhancer(tokenChain);
 		
 	}
-	
+	  
 	@Bean
 	public JwtTokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());

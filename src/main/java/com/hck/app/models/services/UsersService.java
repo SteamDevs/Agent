@@ -14,5 +14,9 @@ public interface UsersService {
 	
 	public void delete(Long id );
 	
-	public Users verifyLogin(Users user );
+	//Deprecated
+	//public Users verifyLogin(Users user );
+	
+	//Get Data Users For Token
+	
 }

@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -52,6 +54,25 @@ public class UserContoller {
 		}
 		
 		return new ResponseEntity<Users>(users, HttpStatus.OK);
+	}
+	
+	@PostMapping("/users")
+	public ResponseEntity<?> storedUser(@RequestBody Users user ){
+		
+		Users newUsers = null;
+		
+		try {
+			
+			newUsers = userService.save(user);
+			
+		}catch(DataAccessException e) {
+			
+			return new ResponseEntity<>("{ \"message\" : \"DB Errors\"}"
+					.concat(e.getMostSpecificCause().getMessage()),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		return new ResponseEntity<Users>(newUsers, HttpStatus.CREATED );
 	}
 
 }

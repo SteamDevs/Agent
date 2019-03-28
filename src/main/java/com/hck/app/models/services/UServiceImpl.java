@@ -44,25 +44,26 @@ public class UServiceImpl implements  UserDetailsService, UsersService  {
 	@Override
 	public List<Users> findAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return (List<Users>) usersDao.findAll();
 	}
 
 	@Override
 	public Users findById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return usersDao.findById(id)
+				.orElse(null);
 	}
 
 	@Override
 	public Users save(Users users) {
 		// TODO Auto-generated method stub
-		return null;
+		return usersDao.save(users);
 	}
 
 	@Override
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
-		
+		usersDao.deleteById(id);
 	}
 
 	

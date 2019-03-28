@@ -20,4 +20,10 @@ public class RServiceImpl implements RolService {
 		return (List<Rol>) rolDao.findAll(); 
 	}
 
+	@Override
+	public Rol save(Rol rol) {
+		// TODO Auto-generated method stub
+		return rolDao.save(rol);
+	}
+
 }

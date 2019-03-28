@@ -73,5 +73,7 @@ public class UServiceImpl implements  UserDetailsService, UsersService  {
 		// TODO Auto-generated method stub
 		return usersDao.findByUsername(username);
 	}
+
+	
 	
 }

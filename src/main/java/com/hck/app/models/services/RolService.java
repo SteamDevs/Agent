@@ -8,4 +8,7 @@ public interface RolService {
 	
 	//Only rol
 	public List<Rol> findAll();
+	
+	public Rol save(Rol rol );
+	
 }

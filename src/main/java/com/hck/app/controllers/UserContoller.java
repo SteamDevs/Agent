@@ -1,0 +1,57 @@
+package com.hck.app.controllers;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.hck.app.models.entity.Users;
+import com.hck.app.models.services.UServiceImpl;
+
+@RestController
+@RequestMapping("/api/v1")
+public class UserContoller {
+	
+	@Autowired
+	private UServiceImpl userService; 
+	
+	@GetMapping("/users")
+	public List<Users> index(){
+		
+		return userService.findAll();
+	}
+	
+	@GetMapping("/users/{id}")
+	public ResponseEntity<?> showOneUser(@PathVariable Long id ){
+		
+		Users users = null;
+		
+		try {
+			
+			users = userService.findById(id); 
+			
+		}catch(DataAccessException e) {
+			
+			return new ResponseEntity<>("{ \"message\" : \"DB Errors\"}"
+					.concat(e.getMostSpecificCause().getMessage()),
+					HttpStatus.INTERNAL_SERVER_ERROR);
+			
+		}
+		
+		if(users == null ) {
+			
+			return new ResponseEntity<>("{ \"message\" : \"el id no existe en la DB\"}",
+					HttpStatus.NOT_FOUND);
+			
+		}
+		
+		return new ResponseEntity<Users>(users, HttpStatus.OK);
+	}
+
+}

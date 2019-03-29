@@ -3,7 +3,7 @@ package com.hck.app.models.entity;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.persistence.CascadeType;
+//import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,7 +38,7 @@ public class Users implements Serializable {
 	@Column(unique = true)
 	private String email;
 
-	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name="usuarios_roles", joinColumns= @JoinColumn(name="usuario_id"),
 	inverseJoinColumns=@JoinColumn(name="role_id"),
 	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})

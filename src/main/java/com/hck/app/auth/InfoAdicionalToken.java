@@ -14,24 +14,23 @@ import com.hck.app.models.entity.Users;
 import com.hck.app.models.services.UServiceImpl;
 
 @Component
-public class EnhancerInfo implements TokenEnhancer {
+public class InfoAdicionalToken implements TokenEnhancer{
 	
 	@Autowired
 	private UServiceImpl userService ;
-	
+
 	@Override
-	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication auth) {
-		// TODO Auto-generated method stub
+	public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication) {
 		
-		Users user = userService.findByUsername(auth.getName());
+		Users usuario = userService.findByUsername(authentication.getName());
+		Map<String, Object> info = new HashMap<>();
+		info.put("info_adicional", "Hola que tal!: ".concat(authentication.getName()));
 		
+		info.put("nombre", usuario.getNombre());
+		info.put("apellido", usuario.getApellido());
+		info.put("email", usuario.getEmail());
 		
-		Map<String, Object> msg = new HashMap<>(); 
-		msg.put("Success Auth",  "Welcome :  " .concat(auth.getName()));
-		msg.put("username ", user.getId() + " : " .concat(user.getUsername()));
-		msg.put("email",  ":" .concat(user.getEmail()));
-		
-		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(msg);
+		((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(info);
 		
 		return accessToken;
 	}

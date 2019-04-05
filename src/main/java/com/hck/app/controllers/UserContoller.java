@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hck.app.models.entity.Users;
 import com.hck.app.models.services.UServiceImpl;
 
-@CrossOrigin(origins = { "http://localhost:4200" })
+@CrossOrigin(origins = { "http://localhost:4200/#/**" })
 @RestController
 @RequestMapping("/api/v1")
 public class UserContoller {
 	
 	@Autowired
 	private UServiceImpl userService; 
-	
+	 
 	@GetMapping("/users")
 	public List<Users> index(){
 		

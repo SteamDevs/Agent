@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hck.app.models.entity.Users;
 import com.hck.app.models.services.UServiceImpl;
@@ -76,5 +78,12 @@ public class UserContoller {
 		
 		return new ResponseEntity<Users>(newUsers, HttpStatus.CREATED );
 	}
+	
+	@PostMapping("/users/file")
+	public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam Long id ){
+		
+		return new ResponseEntity<>("{ \"message\" : \"successfully processed file\"}", HttpStatus.CREATED );
+	}
+	
 
 }

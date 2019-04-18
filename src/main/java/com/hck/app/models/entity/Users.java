@@ -19,7 +19,12 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "usuarios")
 public class Users implements Serializable {
-
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -43,6 +48,8 @@ public class Users implements Serializable {
 	inverseJoinColumns=@JoinColumn(name="role_id"),
 	uniqueConstraints= {@UniqueConstraint(columnNames= {"usuario_id", "role_id"})})
 	private List<Rol> roles;
+	
+	private String img;
 
 	public Long getId() {
 		return id;
@@ -108,8 +115,13 @@ public class Users implements Serializable {
 		this.email = email;
 	}
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	
 }

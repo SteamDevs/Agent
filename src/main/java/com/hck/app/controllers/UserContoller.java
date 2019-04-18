@@ -1,5 +1,10 @@
 package com.hck.app.controllers;
 
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,6 +86,26 @@ public class UserContoller {
 	
 	@PostMapping("/users/file")
 	public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam Long id ){
+		
+		Users user = userService.findById(id);
+		
+		if(!file.isEmpty()) {
+			String nameFile = file.getOriginalFilename();
+			Path filePath = Paths.get("PATHXDXD").resolve(nameFile).toAbsolutePath();
+		
+			try {
+				
+				Files.copy(file.getInputStream(), filePath );
+			
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			user.setImg(nameFile);
+		}
+		
+		
 		
 		return new ResponseEntity<>("{ \"message\" : \"successfully processed file\"}", HttpStatus.CREATED );
 	}

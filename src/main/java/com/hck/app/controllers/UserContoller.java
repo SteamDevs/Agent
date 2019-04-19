@@ -83,7 +83,7 @@ public class UserContoller {
 		
 		return new ResponseEntity<Users>(newUsers, HttpStatus.CREATED );
 	}
-	
+	    
 	@PostMapping("/users/file")
 	public ResponseEntity<?> uploadFile(@RequestParam("file") MultipartFile file, @RequestParam Long id ){
 		
@@ -94,7 +94,7 @@ public class UserContoller {
 			Path filePath = Paths.get("C:\\spring\\img-generics").resolve(nameFile).toAbsolutePath();
 		
 			try {
-				
+				   
 				Files.copy(file.getInputStream(), filePath );
 			
 			} catch (IOException e) {
@@ -105,9 +105,11 @@ public class UserContoller {
 			
 			user.setImg(nameFile);
 			userService.save(user);
-			//fix	
+		
 		}else {
+			
 			return new ResponseEntity<>("{ \"message\" : \"Not Change or Send Image\"}", HttpStatus.EXPECTATION_FAILED );
+		
 		}
 		
 		

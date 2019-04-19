@@ -105,8 +105,8 @@ public class UserContoller {
 			
 			user.setImg(nameFile);
 			userService.save(user);
+			//fix	
 		}
-		
 		
 		
 		return new ResponseEntity<>("{ \"message\" : \"successfully processed file\"}", HttpStatus.CREATED );

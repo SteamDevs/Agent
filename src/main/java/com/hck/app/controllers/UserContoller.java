@@ -91,7 +91,7 @@ public class UserContoller {
 		
 		if(!file.isEmpty()) {
 			String nameFile = file.getOriginalFilename();
-			Path filePath = Paths.get("PATHXDXD").resolve(nameFile).toAbsolutePath();
+			Path filePath = Paths.get("C:\\spring\\img-generics").resolve(nameFile).toAbsolutePath();
 		
 			try {
 				

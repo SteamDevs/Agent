@@ -106,6 +106,8 @@ public class UserContoller {
 			user.setImg(nameFile);
 			userService.save(user);
 			//fix	
+		}else {
+			return new ResponseEntity<>("{ \"message\" : \"Not Change or Send Image\"}", HttpStatus.EXPECTATION_FAILED );
 		}
 		
 		

@@ -44,22 +44,16 @@ public class UserContoller {
 		Users users = null;
 		
 		try {
-			
 			users = userService.findById(id); 
-			
 		}catch(DataAccessException e) {
-			
 			return new ResponseEntity<>("{ \"message\" : \"DB Errors\"}"
 					.concat(e.getMostSpecificCause().getMessage()),
 					HttpStatus.INTERNAL_SERVER_ERROR);
-			
 		}
 		
 		if(users == null ) {
-			
 			return new ResponseEntity<>("{ \"message\" : \"el id no existe en la DB\"}",
 					HttpStatus.NOT_FOUND);
-			
 		}
 		
 		return new ResponseEntity<Users>(users, HttpStatus.OK);
@@ -67,15 +61,11 @@ public class UserContoller {
 	
 	@PostMapping("/users")
 	public ResponseEntity<?> storedUser(@RequestBody Users user ){
-		
 		Users newUsers = null;
 		
 		try {
-			
 			newUsers = userService.save(user);
-			
 		}catch(DataAccessException e) {
-			
 			return new ResponseEntity<>("{ \"message\" : \"DB Errors\"}"
 					.concat(e.getMostSpecificCause().getMessage()),
 					HttpStatus.INTERNAL_SERVER_ERROR);
@@ -94,9 +84,7 @@ public class UserContoller {
 			Path filePath = Paths.get("C:\\spring\\img-generics").resolve(nameFile).toAbsolutePath();
 		
 			try {
-				   
 				Files.copy(file.getInputStream(), filePath );
-			
 			} catch (IOException e) {
 				return new ResponseEntity<>("{ \"message\" : \" Error in upload File \"}"
 						.concat(e.getCause().getMessage()),

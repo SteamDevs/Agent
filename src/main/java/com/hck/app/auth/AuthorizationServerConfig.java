@@ -30,7 +30,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	
 	@Autowired
 	private InfoAdicionalToken infoAdicionalToken;
-
+	
+	/*
+	 * MIGRATE TO OOP -> Lambda Programing 
+	 * [parts] 
+	 * Oauth2, DTO
+	 * */
+	
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 		security.tokenKeyAccess("permitAll()")
